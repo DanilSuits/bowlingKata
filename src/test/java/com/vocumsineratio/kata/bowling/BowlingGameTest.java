@@ -16,8 +16,7 @@ public class BowlingGameTest {
         for (int i : ballsThrown) {
             final int pinsKnockedDown = 0;
 
-            final int scoreForGutterBall = pinsKnockedDown * Game.SCORE_PER_PIN;
-            g.roll(scoreForGutterBall);
+            g.roll(pinsKnockedDown);
         }
 
         final int expectedScore = Game.INITIAL_SCORE;
@@ -26,9 +25,8 @@ public class BowlingGameTest {
 }
 class Game {
     static final int INITIAL_SCORE = 0;
-    static final int SCORE_PER_PIN = 1;
 
-    public void roll(int i) {
+    public void roll(int pinsKnockedDown) {
         //TODO: To change body of created methods use File | Settings | File Templates.
     }
 
