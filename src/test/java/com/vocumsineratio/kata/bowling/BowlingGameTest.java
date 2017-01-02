@@ -12,7 +12,8 @@ public class BowlingGameTest {
     public void testGutterGame () {
         Game g = new Game();
         final int ballsPerGame = 20;
-        for (int i = 0; i < ballsPerGame; ++i) {
+        int [] ballsThrown = new int[ballsPerGame];
+        for (int i : ballsThrown) {
             final int scoreForGutterBall = 0;
             g.roll(scoreForGutterBall);
         }
