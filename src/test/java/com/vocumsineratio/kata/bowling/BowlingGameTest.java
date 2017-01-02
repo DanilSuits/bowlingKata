@@ -3,6 +3,8 @@ package com.vocumsineratio.kata.bowling;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.util.Arrays;
+
 /**
  * @author Danil Suits (danil@vast.com)
  */
@@ -15,9 +17,11 @@ public class BowlingGameTest {
         final int expectedScore = Game.INITIAL_SCORE;
         int[] ballsThrown = new int[ballsPerGame];
 
+        Arrays.fill(ballsThrown, pinsKnockedDown);
+
         Game g = new Game();
-        for (int i : ballsThrown) {
-            g.roll(pinsKnockedDown);
+        for (int pins : ballsThrown) {
+            g.roll(pins);
         }
 
         Assert.assertEquals(g.score(), expectedScore);
