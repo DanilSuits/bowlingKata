@@ -11,11 +11,14 @@ public class BowlingGameTest {
     @Test
     public void testGutterGame () {
         Game g = new Game();
-        for (int i = 0; i < 20; ++i) {
-            g.roll(0);
+        final int ballsPerGame = 20;
+        for (int i = 0; i < ballsPerGame; ++i) {
+            final int scoreForGutterBall = 0;
+            g.roll(scoreForGutterBall);
         }
 
-        Assert.assertEquals(g.score(), 0);
+        final int expectedScore = 0;
+        Assert.assertEquals(g.score(), expectedScore);
     }
 }
 class Game {
@@ -25,6 +28,7 @@ class Game {
     }
 
     public int score() {
-        return 0;  //TODO: To change body of created methods use File | Settings | File Templates.
+        final int finalScore = 0;
+        return finalScore;
     }
 }
