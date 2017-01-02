@@ -9,20 +9,21 @@ import org.testng.annotations.Test;
 public class BowlingGameTest {
 
     @Test
-    public void testGutterGame () {
-        Game g = new Game();
+    public void testGutterGame() {
         final int ballsPerGame = 20;
-        int [] ballsThrown = new int[ballsPerGame];
-        for (int i : ballsThrown) {
-            final int pinsKnockedDown = 0;
+        final int pinsKnockedDown = 0;
+        final int expectedScore = Game.INITIAL_SCORE;
+        int[] ballsThrown = new int[ballsPerGame];
 
+        Game g = new Game();
+        for (int i : ballsThrown) {
             g.roll(pinsKnockedDown);
         }
 
-        final int expectedScore = Game.INITIAL_SCORE;
         Assert.assertEquals(g.score(), expectedScore);
     }
 }
+
 class Game {
     static final int INITIAL_SCORE = 0;
 
