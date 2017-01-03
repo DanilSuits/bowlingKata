@@ -50,14 +50,23 @@ class Specification {
 }
 class Game {
     static final int INITIAL_SCORE = 0;
+    Model theModel = new Model();
 
     public void roll(int pinsKnockedDown) {
-        //TODO: To change body of created methods use File | Settings | File Templates.
+        theModel.roll(pinsKnockedDown);
     }
 
     public int score() {
-        Score finalScore = new Score(INITIAL_SCORE);
-        return finalScore.value;
+        return theModel.score().value;
+    }
+}
+class Model {
+    public void roll(int pinsKnockedDown) {
+        // TODO
+    }
+
+    public Score score () {
+        return new Score(Game.INITIAL_SCORE);
     }
 }
 class Score {
