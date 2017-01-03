@@ -27,8 +27,9 @@ public class BowlingGameTest {
     }
 
     private void verify(Specification gutterGameSpec) {
+        SUTFactory factory = retrieveFactoryFromCompositionRoot();
         // GIVEN
-        SUT systemUnderTest = new Adapter();
+        SUT systemUnderTest = factory.createSubjectInDefaultState();
 
         // WHEN
         for (int pins : gutterGameSpec.ballsThrown) {
@@ -37,6 +38,11 @@ public class BowlingGameTest {
 
         // THEN
         Assert.assertEquals(systemUnderTest.score(), gutterGameSpec.expectedScore);
+    }
+
+    private SUTFactory retrieveFactoryFromCompositionRoot() {
+        // TODO: normally this would be dependency injected
+        return new Root();
     }
 }
 class Specification {
@@ -48,6 +54,10 @@ class Specification {
         this.expectedScore = expectedScore;
     }
 }
+interface SUTFactory<T extends SUT> {
+    T createSubjectInDefaultState();
+    void dispose(T sut);
+}
 interface SUT {
     void roll(int pinsKnockedDown);
     int score();
@@ -55,6 +65,16 @@ interface SUT {
 class BowlingRules {
     // TODO: This may need to find a home.
     static final int INITIAL_SCORE = 0;
+}
+class Root implements SUTFactory<Adapter>{
+
+    public Adapter createSubjectInDefaultState() {
+        return new Adapter();
+    }
+
+    public void dispose(Adapter sut) {
+
+    }
 }
 class Adapter implements SUT {
     Game theGame = new Game();
