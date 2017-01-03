@@ -17,7 +17,7 @@ public class BowlingGameTest {
         int[] ballsThrown = new int[ballsPerGame];
         Arrays.fill(ballsThrown, pinsKnockedDown);
 
-        final int expectedScore = Game.INITIAL_SCORE;
+        final int expectedScore = BowlingRules.INITIAL_SCORE;
 
         // Everything that happens above this break is just specification design
 
@@ -28,7 +28,7 @@ public class BowlingGameTest {
 
     private void verify(Specification gutterGameSpec) {
         // GIVEN
-        Game g = new Game();
+        Adapter g = new Adapter();
 
         // WHEN
         for (int pins : gutterGameSpec.ballsThrown) {
@@ -48,25 +48,29 @@ class Specification {
         this.expectedScore = expectedScore;
     }
 }
-class Game {
+class BowlingRules {
+    // TODO: This may need to find a home.
     static final int INITIAL_SCORE = 0;
-    Model theModel = new Model();
+}
+class Adapter {
+    Game theGame = new Game();
 
     public void roll(int pinsKnockedDown) {
-        theModel.roll(pinsKnockedDown);
+        theGame.roll(pinsKnockedDown);
     }
 
     public int score() {
-        return theModel.score().value;
+        return theGame.score().value;
     }
 }
-class Model {
+class Game {
     public void roll(int pinsKnockedDown) {
         // TODO
     }
 
     public Score score () {
-        return new Score(Game.INITIAL_SCORE);
+        final Score initialScore = new Score(BowlingRules.INITIAL_SCORE);
+        return initialScore;
     }
 }
 class Score {
