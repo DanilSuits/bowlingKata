@@ -28,15 +28,15 @@ public class BowlingGameTest {
 
     private void verify(Specification gutterGameSpec) {
         // GIVEN
-        Adapter g = new Adapter();
+        SUT systemUnderTest = new Adapter();
 
         // WHEN
         for (int pins : gutterGameSpec.ballsThrown) {
-            g.roll(pins);
+            systemUnderTest.roll(pins);
         }
 
         // THEN
-        Assert.assertEquals(g.score(), gutterGameSpec.expectedScore);
+        Assert.assertEquals(systemUnderTest.score(), gutterGameSpec.expectedScore);
     }
 }
 class Specification {
@@ -48,11 +48,15 @@ class Specification {
         this.expectedScore = expectedScore;
     }
 }
+interface SUT {
+    void roll(int pinsKnockedDown);
+    int score();
+}
 class BowlingRules {
     // TODO: This may need to find a home.
     static final int INITIAL_SCORE = 0;
 }
-class Adapter {
+class Adapter implements SUT {
     Game theGame = new Game();
 
     public void roll(int pinsKnockedDown) {
