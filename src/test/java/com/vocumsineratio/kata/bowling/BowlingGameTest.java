@@ -23,12 +23,19 @@ public class BowlingGameTest {
 
         Specification gutterGameSpec = new Specification(ballsThrown, expectedScore);
 
+        verify(gutterGameSpec);
+    }
 
+    private void verify(Specification gutterGameSpec) {
+        // GIVEN
         Game g = new Game();
+
+        // WHEN
         for (int pins : gutterGameSpec.ballsThrown) {
             g.roll(pins);
         }
 
+        // THEN
         Assert.assertEquals(g.score(), gutterGameSpec.expectedScore);
     }
 }
