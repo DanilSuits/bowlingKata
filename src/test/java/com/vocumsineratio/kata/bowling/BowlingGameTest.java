@@ -56,7 +56,14 @@ class Game {
     }
 
     public int score() {
-        final int finalScore = INITIAL_SCORE;
-        return finalScore;
+        Score finalScore = new Score(INITIAL_SCORE);
+        return finalScore.value;
+    }
+}
+class Score {
+    final int value;
+
+    Score(int value) {
+        this.value = value;
     }
 }
